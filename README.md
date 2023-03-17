@@ -54,7 +54,7 @@ _____________________________________
 ![](https://github.com/NotSynthic/FNF-PsychEngine-3D/blob/main/art/image%20(1).png)
 
 * Now to make the model move and shit, we have to go in the update function and do this
-![](https://github.com/NotSynthic/FNF-PsychEngine-3D/blob/main/art/image%20.png)
+![](https://github.com/NotSynthic/FNF-PsychEngine-3D/blob/main/art/image.png)
 
 you can change the player's scrollfactor to fit the movement of the model
 
