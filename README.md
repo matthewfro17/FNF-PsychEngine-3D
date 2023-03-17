@@ -47,6 +47,12 @@ _____________________________________
 * Comes with a Mod Organizing/Disabling Menu.
 
 
+
+## 3D Support
+* 3D Support. Models such as obj, dae, awd, md2, md5 are supported.
+* Adding a 3D model in a stage is difficult, so ill show an image of how it is done
+![](https://streamable.com/zpbmnk)
+
 ## Atleast one change to every week:
 ### Week 1:
   * New Dad Left sing sprite

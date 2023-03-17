@@ -61,6 +61,20 @@ import FunkinLua;
 import DialogueBoxPsych;
 import Conductor.Rating;
 
+//3d shit
+import flx3d.Flx3DView;
+import away3d.lights.DirectionalLight;
+import away3d.materials.lightpickers.StaticLightPicker;
+import away3d.materials.methods.OutlineMethod;
+import away3d.animators.transitions.CrossfadeTransition;
+import away3d.events.AnimationStateEvent;
+import flx3d.Flx3DUtil;
+import openfl.system.System;
+import away3d.core.base.Geometry;
+import away3d.entities.Mesh;
+import away3d.materials.TextureMaterial;
+import away3d.utils.Cast;
+
 #if !flash 
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
@@ -78,6 +92,7 @@ import sys.io.File;
 #end
 
 using StringTools;
+
 
 class PlayState extends MusicBeatState
 {
@@ -327,6 +342,8 @@ class PlayState extends MusicBeatState
 	// stores the last combo score objects in an array
 	public static var lastScore:Array<FlxSprite> = [];
 
+	public var cam3D:Flx3DView;
+
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
@@ -511,6 +528,28 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
+			case 'test':
+				//cam3D will already be defined for you, so you can just put it there
+
+				cam3D = new Flx3DView(0, 0, 1600, 900); //make sure to keep width and height as 1600 and 900
+                    cam3D.scrollFactor.set();
+                    cam3D.screenCenter();
+                    cam3D.antialiasing = true;
+                    add(cam3D);
+
+					//when you add your model, choose the path that fits your model, like Paths.obj or Paths.md2
+
+                    cam3D.addModel(Paths.obj("object"), function(event) { 
+                        trace("STAGE:" + Std.string(event.asset.assetType)); 
+                        if (Std.string(event.asset.assetType) == "mesh") { 
+                                var mesh:Mesh = cast(event.asset, Mesh);
+                                mesh.scale(50);
+                                mesh.rotationY = 90; 
+                                System.gc();
+                        } 
+                }, "assets/models/tex.png", true);
+
+				//paths for the image do not really work, so we have to do something like "assets/models/texture.png"
 			case 'stage': //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
