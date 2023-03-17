@@ -528,7 +528,7 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'test':
+			/*case 'test':
 				//cam3D will already be defined for you, so you can just put it there
 
 				cam3D = new Flx3DView(0, 0, 1600, 900); //make sure to keep width and height as 1600 and 900
@@ -550,6 +550,7 @@ class PlayState extends MusicBeatState
                 }, "assets/models/tex.png", true);
 
 				//paths for the image do not really work, so we have to do something like "assets/models/texture.png"
+			*/
 			case 'stage': //Week 1
 				var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 				add(bg);
@@ -2854,6 +2855,12 @@ class PlayState extends MusicBeatState
 	var canPause:Bool = true;
 	var limoSpeed:Float = 0;
 
+	public var rotY:Float;
+
+	public var crY:Float;
+	public var crX:Float;
+	public var crZ:Float;
+
 	override public function update(elapsed:Float)
 	{
 		/*if (FlxG.keys.justPressed.NINE)
@@ -2864,6 +2871,16 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
+			/*case 'test':
+				// this makes it move on camera movement
+				cam3D.view.camera.x = FlxG.camera.scroll.x;
+        		cam3D.view.camera.y = -FlxG.camera.scroll.y + 500;
+        		cam3D.view.camera.z = -1500 + (FlxG.camera.zoom * 1000);
+
+				//rotY will already be defined for you
+
+				cam3D.view.camera.rotationY = FlxMath.lerp(cam3D.view.camera.rotationY, rotY, 0.04);
+			*/
 			case 'tank':
 				moveTank(elapsed);
 			case 'schoolEvil':

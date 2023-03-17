@@ -53,6 +53,12 @@ _____________________________________
 * Adding a 3D model in a stage is difficult, so ill show an image of how it is done
 ![](https://github.com/NotSynthic/FNF-PsychEngine-3D/blob/main/art/image%20(1).png)
 
+* Now to make the model move and shit, we have to go in the update function and do this
+![](https://github.com/NotSynthic/FNF-PsychEngine-3D/blob/main/art/image%20.png)
+
+you can change the player's scrollfactor to fit the movement of the model
+
+compile your game, open the song with the stage and the model should be there!
 ## Atleast one change to every week:
 ### Week 1:
   * New Dad Left sing sprite
