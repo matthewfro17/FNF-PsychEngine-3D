@@ -34,6 +34,12 @@ import flixel.util.FlxSave;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.system.FlxAssets.FlxShader;
 
+import flx3d.Flx3DView;
+import flx3d.Flx3DUtil;
+import flx3d.Flx3DCamera;
+import flx3d.FlxView3D;
+
+
 #if (!flash && sys)
 import flixel.addons.display.FlxRuntimeShader;
 #end
