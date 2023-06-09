@@ -1887,10 +1887,10 @@ class FunkinLua {
 			}
 		});
 					
-		Lua_helper.add_callback(lua, "makeLuaView", function(tag:String, image:String, w:Float, h:Float) {
+		Lua_helper.add_callback(lua, "makeLuaView", function(tag:String, x:Float, y:Float, w:Int, h:Int) {
 			tag = tag.replace('.', '');
 			resetSpriteTag(tag);
-			var leView:ModchartView = new ModchartView(0, 0, FlxG.width * w, FlxG.height * h);
+			var leView:ModchartView = new ModchartView(x, y, FlxG.width * w, FlxG.height * h);
 			leView.antialiasing = ClientPrefs.globalAntialiasing;
 			PlayState.instance.modchartView.set(tag, leView);
 			leView.active = true;
