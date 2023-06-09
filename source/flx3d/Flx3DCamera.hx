@@ -23,18 +23,43 @@ import away3d.loaders.misc.AssetLoaderContext;
 import openfl.Assets;
 import away3d.entities.Mesh;
 import away3d.loaders.Loader3D;
+import flixel.FlxCamera;
+import away3d.containers.View3D;
 
-// FlxView3D with helpers for easier updating
-
-class Flx3DView extends FlxView3D {
+class Flx3DCamera extends FlxCamera {
 	private static var __3DIDS:Int = 0;
 
+	public var view:View3D;
+
 	var meshes:Array<Mesh> = [];
-	public function new(x:Float = 0, y:Float = 0, width:Int = -1, height:Int = -1) {
+	public function new(X:Int = 0, Y:Int = 0, Width:Int = 0, Height:Int = 0, DefaultZoom:Float = 1) {
 		if (!Flx3DUtil.is3DAvailable())
-			throw "[Flx3DView] 3D is not available on this platform. Stages in use: " + Flx3DUtil.getTotal3D() + ", Max stages allowed: " + FlxG.stage.stage3Ds.length + ".";
-		super(x, y, width, height);
+			throw "[Flx3DCamera] 3D is not available on this platform. Stages in use: " + Flx3DUtil.getTotal3D() + ", Max stages allowed: " + FlxG.stage.stage3Ds.length + ".";
+		super(X, Y, Width, Height, DefaultZoom);
 		__cur3DStageID = __3DIDS++;
+
+		view = new View3D();
+		view.width = this.width;
+		view.height = this.height;
+		view.visible = true;
+
+		FlxG.stage.addChild(view);
+	}
+
+	public override function render() {
+		super.render();
+
+		view.x = FlxG.game.x + FlxG.game.scaleX * (flashSprite.x + flashSprite.scaleX * (_scrollRect.x + _scrollRect.scaleX * (_scrollRect.scrollRect.x)));
+		view.x -= _scrollRect.scrollRect.width * ((zoom / initialZoom) - 1) / 2;
+		view.y = FlxG.game.y + FlxG.game.scaleY * (flashSprite.y + flashSprite.scaleY * (_scrollRect.y + _scrollRect.scaleY * (_scrollRect.scrollRect.y)));
+		view.y -= _scrollRect.scrollRect.height * ((zoom / initialZoom) - 1) / 2;
+
+		view.width = _scrollRect.scrollRect.width / initialZoom;
+		view.width += _scrollRect.scrollRect.width / initialZoom * ((zoom / initialZoom) - 1);
+		view.height = _scrollRect.scrollRect.height / initialZoom;
+		view.height += _scrollRect.scrollRect.height / initialZoom * ((zoom / initialZoom) - 1);
+
+		view.render();
 	}
 
 	public function addModel(assetPath:String, callback:Asset3DEvent->Void, ?texturePath:String, smoothTexture:Bool = true) {
@@ -109,7 +134,6 @@ class Flx3DView extends FlxView3D {
 
 		token.addEventListener(LoaderEvent.RESOURCE_COMPLETE, (_) -> {
 			trace("Loader Finished...");
-
 		});
 
 		_loaders.set(lib,token);
@@ -131,6 +155,13 @@ class Flx3DView extends FlxView3D {
 				}
 			}
 			Asset3DLibrary._instances.remove('Flx3DView-${__cur3DStageID}');
+		}
+
+		FlxG.stage.removeChild(view);
+		try {
+			view.dispose();
+		} catch(e) {
+
 		}
 
 		super.destroy();
