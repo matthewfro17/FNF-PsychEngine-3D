@@ -63,17 +63,8 @@ import Conductor.Rating;
 
 //3d shit
 import flx3d.Flx3DView;
-import away3d.lights.DirectionalLight;
-import away3d.materials.lightpickers.StaticLightPicker;
-import away3d.materials.methods.OutlineMethod;
-import away3d.animators.transitions.CrossfadeTransition;
-import away3d.events.AnimationStateEvent;
 import flx3d.Flx3DUtil;
-import openfl.system.System;
-import away3d.core.base.Geometry;
-import away3d.entities.Mesh;
-import away3d.materials.TextureMaterial;
-import away3d.utils.Cast;
+import flx3d.Flx3DCamera;
 
 #if !flash 
 import flixel.addons.display.FlxRuntimeShader;
@@ -1581,6 +1572,7 @@ class PlayState extends MusicBeatState
 	public function getLuaObject(tag:String, text:Bool=true):FlxSprite {
 		if(modchartSprites.exists(tag)) return modchartSprites.get(tag);
 		if(text && modchartTexts.exists(tag)) return modchartTexts.get(tag);
+		if(modchartViews.exists(tag)) return modchartViews.get(tag);
 		if(variables.exists(tag)) return variables.get(tag);
 		return null;
 	}
