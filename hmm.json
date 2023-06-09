@@ -11,6 +11,11 @@
       "version": null
     },
     {
+      "name": "away3d",
+      "type": "haxelib",
+      "version": null
+    },
+    {
       "name": "flixel",
       "type": "haxelib",
       "version": null
