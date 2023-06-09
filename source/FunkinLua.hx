@@ -1886,6 +1886,15 @@ class FunkinLua {
 				}
 			}
 		});
+					
+		Lua_helper.add_callback(lua, "makeLuaView", function(tag:String, image:String, w:Float, h:Float) {
+			tag = tag.replace('.', '');
+			resetSpriteTag(tag);
+			var leView:ModchartView = new ModchartView(0, 0, FlxG.width * w, FlxG.height * h);
+			leView.antialiasing = ClientPrefs.globalAntialiasing;
+			PlayState.instance.modchartView.set(tag, leView);
+			leView.active = true;
+		});
 		Lua_helper.add_callback(lua, "setGraphicSize", function(obj:String, x:Int, y:Int = 0, updateHitbox:Bool = true) {
 			if(PlayState.instance.getLuaObject(obj)!=null) {
 				var shit:FlxSprite = PlayState.instance.getLuaObject(obj);
@@ -3284,6 +3293,16 @@ class ModchartSprite extends FlxSprite
 	public function new(?x:Float = 0, ?y:Float = 0)
 	{
 		super(x, y);
+		antialiasing = ClientPrefs.globalAntialiasing;
+	}
+}
+					
+class ModchartView extends Flx3DView
+{
+	public var wasAdded:Bool = false;
+	public function new(?x:Float = 0, ?y:Float = 0, ?w:Int = 0, ?y:Int = 0)
+	{
+		super(x, y, w, y);
 		antialiasing = ClientPrefs.globalAntialiasing;
 	}
 }
