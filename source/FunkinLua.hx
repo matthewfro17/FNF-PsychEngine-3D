@@ -1892,7 +1892,7 @@ class FunkinLua {
 			resetSpriteTag(tag);
 			var leView:ModchartView = new ModchartView(x, y, FlxG.width * w, FlxG.height * h);
 			leView.antialiasing = ClientPrefs.globalAntialiasing;
-			PlayState.instance.modchartView.set(tag, leView);
+			PlayState.instance.modchartViews.set(tag, leView);
 			leView.active = true;
 		});
 		Lua_helper.add_callback(lua, "setGraphicSize", function(obj:String, x:Int, y:Int = 0, updateHitbox:Bool = true) {
@@ -3003,6 +3003,19 @@ class FunkinLua {
 		}
 		pee.destroy();
 		PlayState.instance.modchartSprites.remove(tag);
+	}
+	function resetViewTag(tag:String) {
+		if(!PlayState.instance.modchartViews.exists(tag)) {
+			return;
+		}
+
+		var pee:ModchartView = PlayState.instance.modchartViews.get(tag);
+		pee.kill();
+		if(pee.wasAdded) {
+			PlayState.instance.remove(pee, true);
+		}
+		pee.destroy();
+		PlayState.instance.modchartViews.remove(tag);
 	}
 
 	function cancelTween(tag:String) {
