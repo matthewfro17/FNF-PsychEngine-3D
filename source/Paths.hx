@@ -38,6 +38,7 @@ class Paths
 		'data',
 		'songs',
 		'music',
+		'models',
 		'sounds',
 		'shaders',
 		'videos',
@@ -189,20 +190,20 @@ class Paths
 	{
 		return getPath('$key.lua', TEXT, library);
 	}
-	inline static public function obj(key:String) {
-		return getPath('models/$key.obj', BINARY, null);
+	inline static public function obj(key:String, ?library:String) {
+		return getPath('models/$key.obj', BINARY, library));
 	}
-	inline static public function dae(key:String) {
-		return getPath('models/$key.dae', BINARY, null);
+	inline static public function dae(key:String, ?library:String) {
+		return getPath('models/$key.dae', BINARY, library));
 	}
-	inline static public function md2(key:String) {
-		return getPath('models/$key.md2', BINARY, null);
+	inline static public function md2(key:String, ?library:String) {
+		return getPath('models/$key.md2', BINARY, library));
 	}
-	inline static public function md5(key:String) {
-		return getPath('models/$key.md5', BINARY, null);
+	inline static public function md5(key:String, ?library:String) {
+		return getPath('models/$key.md5', BINARY, library));
 	}
-	inline static public function awd(key:String) {
-		return getPath('models/$key.awd', BINARY, null);
+	inline static public function awd(key:String, ?library:String) {
+		return getPath('models/$key.awd', BINARY, library));
 	}
 
 	static public function video(key:String)
