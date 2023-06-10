@@ -1934,7 +1934,7 @@ class FunkinLua {
 			}
 			});
 					
-		Lua_helper.add_callback(lua, "addLuaObj", function(tag:String, modeltag:String, modelpath:String, image:String, smooth:Bool = true) {
+		Lua_helper.add_callback(lua, "addLuaObj", function(tag:String, modeltag, modelpath:String, image:String, smooth:Bool = true) {
 			if(PlayState.instance.modchartViews.exists(tag)) {
 				var cool:ModchartView = PlayState.instance.modchartViews.get(tag);
 				if(cool.wasAdded) {
