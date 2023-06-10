@@ -75,7 +75,7 @@ class Flx3DCamera extends FlxCamera {
 
 		var material:TextureMaterial = null;
 		if (texturePath != null)
-			material = new TextureMaterial(Cast.bitmapTexture(Assets.getBitmapData(texturePath, true, false)), smoothTexture);
+			material = new TextureMaterial(Cast.bitmapTexture(Assets.getBitmapData(texturePath, true)), smoothTexture);
 
 		return loadData(model, context, switch(Path.extension(assetPath).toLowerCase()) {
 			case "dae": new DAEParser();
