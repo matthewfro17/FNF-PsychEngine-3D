@@ -1942,8 +1942,8 @@ class FunkinLua {
 						if (Std.string(event.asset.assetType) == "mesh") { 
                        					var mesh:Mesh = cast(event.asset, Mesh);      
                         				modeltag = mesh; 
-              					} 
-					}, image), smooth);
+              					}
+					}, image, smooth);
 				}
 			}
 		});
