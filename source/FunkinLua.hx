@@ -1934,15 +1934,12 @@ class FunkinLua {
 			}
 			});
 					
-		Lua_helper.add_callback(lua, "addLuaObj", function(tag:String, modeltag, modelpath:String, image:String, smooth:Bool = true) {
+		Lua_helper.add_callback(lua, "addLuaObj", function(tag:String, modelpath:String, image:String, smooth:Bool = true) {
 			if(PlayState.instance.modchartViews.exists(tag)) {
 				var cool:ModchartView = PlayState.instance.modchartViews.get(tag);
 				if(cool.wasAdded) {
-					cool.addModel(Paths.obj(modelpath), function(event) {
-						if (Std.string(event.asset.assetType) == "mesh") { 
-                       					var mesh:Mesh = cast(event.asset, Mesh);      
-                        				modeltag = mesh; 
-              					}
+					cool.addModel(Paths.obj(modelpath), function(mesh) {
+						
 					}, image, smooth);
 				}
 			}
