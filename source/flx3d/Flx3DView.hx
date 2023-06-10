@@ -50,7 +50,7 @@ class Flx3DView extends FlxView3D {
 
 		var material:TextureMaterial = null;
 		if (texturePath != null)
-			material = new TextureMaterial(Cast.bitmapTexture(Assets.getBitmapData(texturePath, true, false)), smoothTexture);
+			material = new TextureMaterial(Cast.bitmapTexture(Assets.getBitmapData(texturePath, true)), smoothTexture);
 
 		return loadData(model, context, switch(Path.extension(assetPath).toLowerCase()) {
 			case "dae": new DAEParser();
