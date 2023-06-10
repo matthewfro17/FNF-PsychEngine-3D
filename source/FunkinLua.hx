@@ -38,7 +38,9 @@ import flx3d.Flx3DView;
 import flx3d.Flx3DUtil;
 import flx3d.Flx3DCamera;
 import flx3d.FlxView3D;
-
+import away3d.entities.Mesh;
+import away3d.materials.TextureMaterial;
+import away3d.utils.Cast;
 
 #if (!flash && sys)
 import flixel.addons.display.FlxRuntimeShader;
@@ -1931,6 +1933,20 @@ class FunkinLua {
 				}
 			}
 			});
+					
+		Lua_helper.add_callback(lua, "addLuaObj", function(tag:String, modeltag:String, modelpath:String, image:String, smooth:Bool = true) {
+			if(PlayState.instance.modchartViews.exists(tag)) {
+				var cool:ModchartView = PlayState.instance.modchartViews.get(tag);
+				if(cool.wasAdded) {
+					cool.addModel(Paths.obj(modelpath), function(event) {
+						if (Std.string(event.asset.assetType) == "mesh") { 
+                       					var mesh:Mesh = cast(event.asset, Mesh);      
+                        				modeltag = mesh; 
+              					} 
+					}, image), smooth);
+				}
+			}
+		});
 		Lua_helper.add_callback(lua, "setGraphicSize", function(obj:String, x:Int, y:Int = 0, updateHitbox:Bool = true) {
 			if(PlayState.instance.getLuaObject(obj)!=null) {
 				var shit:FlxSprite = PlayState.instance.getLuaObject(obj);
